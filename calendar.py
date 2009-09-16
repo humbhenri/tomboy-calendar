@@ -15,7 +15,7 @@ import tomboy
 
 class Calendar:
     def __init__(self):
-        self.glade_file = "interface.glade"
+        self.glade_file = "/usr/share/tomboy-calendar/interface.glade"
         self.__get_widgets()
         self.__connect_events()
         self.tomboy = tomboy.Tomboy()
