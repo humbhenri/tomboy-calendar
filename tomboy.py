@@ -40,3 +40,7 @@ class Tomboy:
         
     def __update(self):
         self.__all_notes = self.__interface.ListAllNotes()
+
+    def search_notes(self, text):
+        self.__interface.DisplaySearchWithText(text)
+

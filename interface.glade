@@ -3,6 +3,8 @@
 <!--*- mode: xml -*-->
 <glade-interface>
   <widget class="GtkWindow" id="MainWindow">
+    <property name="width_request">450</property>
+    <property name="height_request">250</property>
     <property name="visible">True</property>
     <property name="window_position">GTK_WIN_POS_CENTER</property>
     <child>
@@ -27,6 +29,31 @@
                 <property name="visible">True</property>
                 <property name="stock_id">gtk-about</property>
                 <signal name="clicked" handler="on_aboutBtn_clicked"/>
+              </widget>
+              <packing>
+                <property name="expand">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkToolItem" id="toolbutton1">
+                <property name="visible">True</property>
+                <child>
+                  <widget class="GtkEntry" id="searchEntry">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkToolButton" id="searchBtn">
+                <property name="visible">True</property>
+                <property name="stock_id">gtk-find</property>
+                <signal name="clicked" handler="on_searchBtn_clicked"/>
               </widget>
               <packing>
                 <property name="expand">False</property>

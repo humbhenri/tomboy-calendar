@@ -15,7 +15,7 @@ import tomboy
 
 class Calendar:
     def __init__(self):
-        self.glade_file = "/usr/share/tomboy-calendar/interface.glade"
+        self.glade_file = "interface.glade"
         self.__get_widgets()
         self.__connect_events()
         self.tomboy = tomboy.Tomboy()
@@ -31,9 +31,10 @@ class Calendar:
         self.__create_note_view()
         self.notelist = gtk.ListStore(str)
         self.noteview.set_model(self.notelist)
+        self.entry = self.wTree.get_widget("searchEntry")
 
     def __create_note_view(self):
-        title = "Nota"
+        title = "Note"
         colId = 0
         col = gtk.TreeViewColumn(title, gtk.CellRendererText(),
                                  text=colId)
@@ -59,8 +60,15 @@ class Calendar:
                "on_Calendar_day_selected": self.__dateSelected,
                "on_Calendar_month_changed": self.__update_statusbar,
                "on_NoteView_row_activated": self.__row_activated,
-               "on_aboutBtn_clicked": self.__show_about_dialog}
+               "on_aboutBtn_clicked": self.__show_about_dialog,
+               "on_searchBtn_clicked": self.__search_notes}
         self.wTree.signal_autoconnect(dic)
+
+    def __search_notes(self, evt):
+        input = self.entry.get_text()
+        notes = self.tomboy.search_notes(input)
+        self.__clear_note_list()
+
 
     def __dateSelected(self, evt):
         date = self.calendar.get_date()
