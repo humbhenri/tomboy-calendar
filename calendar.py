@@ -61,7 +61,8 @@ class Calendar:
                "on_Calendar_month_changed": self.__update_statusbar,
                "on_NoteView_row_activated": self.__row_activated,
                "on_aboutBtn_clicked": self.__show_about_dialog,
-               "on_searchBtn_clicked": self.__search_notes}
+               "on_searchBtn_clicked": self.__search_notes,
+               "on_searchEntry_activate": self.__search_notes}
         self.wTree.signal_autoconnect(dic)
 
     def __search_notes(self, evt):

@@ -42,6 +42,7 @@
                   <widget class="GtkEntry" id="searchEntry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <signal name="activate" handler="on_searchEntry_activate"/>
                   </widget>
                 </child>
               </widget>
