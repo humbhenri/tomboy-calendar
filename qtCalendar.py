@@ -21,7 +21,7 @@ class MyForm(QtGui.QFrame):
         self.notes = []
 
     def popupSearch(self, item):
-        self.tomboy.search_notes(str(item.text()))
+        self.tomboy.show_note(str(item.text()))
 
     def showNotes(self):
         if self.notes == []:
