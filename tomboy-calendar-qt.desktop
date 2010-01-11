@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Tomboy Calendar
+Exec=python /usr/share/tomboy-calendar/qtCalendar.py
+Icon=tomboy-calendar
+StartupNotify=false
+Terminal=false
+Type=Application
+Categories=QT;Utility;
