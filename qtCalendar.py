@@ -10,10 +10,13 @@ from tomboy import Tomboy
 
 class MyForm(QtGui.QFrame):
     def __init__(self, parent=None):
-        self.tomboy = Tomboy()
         QtGui.QWidget.__init__(self, parent)
+        self.tomboy = Tomboy()
         self.ui = Ui_Frame()
         self.ui.setupUi(self)
+        frect = self.frameGeometry()
+        frect.moveCenter(QtGui.QDesktopWidget().availableGeometry().center())
+        self.move(frect.topLeft())
         self.setupActions()
         self.notes = []
 

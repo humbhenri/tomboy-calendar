@@ -1,0 +1,18 @@
+tomboy-calendar
+---------------
+
+License: GPL
+Authour: Humberto H. C. Pinheiro <humbhenri@gmail.com>
+Date: September, 13, 2009
+
+	Simple calendar with tomboy support. Pick a date and it will show you all
+your tomboy notes created in that date. Double click in a note title and it 
+will open tomboy.
+	
+Obs: Makefile script in dist folder to build an rpm for OpenSuse. Change 
+rpm folder paths according to your distro.
+1 - Build a rpm for OpenSuse:
+	cd dist
+	make pack
+	make rpm
+
