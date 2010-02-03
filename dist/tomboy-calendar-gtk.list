@@ -1,0 +1,16 @@
+%product Tomboy Calendar
+%copyright 2009 by Humberto H. C. Pinheiro 
+%vendor Humberto H. C. Pinheiro 
+%description Tomboy calendar interface made in Qt
+%version 0.2
+%readme README
+%license LICENSE
+%requires python
+
+f 644 root root /usr/share/pixmaps/tomboy-calendar.png ../tomboy-calendar.png
+f 644 root root /usr/share/applications/tomboy-calendar.desktop ../tomboy-calendar.desktop
+d 644 root root /usr/share/tomboy-calendar 
+f 644 root root /usr/share/tomboy-calendar/calendar.py ../calendar.py 
+f 644 root root /usr/share/tomboy-calendar/calendar.gif ../calendar.gif
+f 644 root root /usr/share/tomboy-calendar/tomboy.py ../tomboy.py
+f 644 root root /usr/share/tomboy-calendar/interface.glade ../interface.glade 

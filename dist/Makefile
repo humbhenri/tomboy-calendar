@@ -23,3 +23,6 @@ rpm: $(NAME)-$(VER).tar.gz $(NAME).spec
 
 qt: $(FILES_QT)
 	epm -f deb $(NAME)
+
+gtk: $(FILES)
+	epm -f deb tomboy-calendar-gtk
