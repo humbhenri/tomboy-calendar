@@ -12,6 +12,7 @@ try:
 except:
     sys.exit(1)
 import tomboy
+from datetime import date, timedelta
 
 class Calendar:
     def __init__(self):
@@ -62,7 +63,9 @@ class Calendar:
                "on_NoteView_row_activated": self.__row_activated,
                "on_aboutBtn_clicked": self.__show_about_dialog,
                "on_searchBtn_clicked": self.__search_notes,
-               "on_searchEntry_activate": self.__search_notes}
+               "on_searchEntry_activate": self.__search_notes,
+               "on_weekBtn_clicked": self.__week_resume,
+               "on_openAllBtn_clicked": self.__open_all}
         self.wTree.signal_autoconnect(dic)
 
     def __search_notes(self, evt):
@@ -73,7 +76,6 @@ class Calendar:
 
     def __dateSelected(self, evt):
         date = self.calendar.get_date()
-        # calendar month is zero-based
         notes = self.tomboy.get_notes_from_date((date[0], date[1]+1, date[2]))
         self.__clear_note_list()
         for note in notes:
@@ -88,6 +90,27 @@ class Calendar:
         dialog = self.wTree.get_widget("aboutdialog")
         dialog.run()
         dialog.destroy()
+
+    def __week_resume(self, evt):
+        self.__clear_note_list()
+        sd = self.calendar.get_date()
+        d = date(sd[0], sd[1]+1, sd[2])
+        weekday = d.weekday()
+        for i in xrange(-weekday, -weekday+7):
+            dd = d + timedelta(days=i)
+            notes = self.tomboy.get_notes_from_date((dd.year, dd.month, dd.day))
+            for note in notes:
+                self.__append_note(note)
+
+    def __open_all(self, evt):
+        it = self.notelist.get_iter_first()
+        if it:
+            self.tomboy.show_note(self.notelist.get_value(it, 0))
+        it = self.notelist.iter_next(it)
+        while it:
+            self.tomboy.show_note(self.notelist.get_value(it, 0))
+            it = self.notelist.iter_next(it)
+
 
 if __name__=="__main__":
     app = Calendar()

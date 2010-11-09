@@ -1,20 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--*- mode: xml -*-->
+<?xml version="1.0" encoding="UTF-8"?>
 <glade-interface>
+  <!-- interface-requires gtk+ 2.12 -->
+  <!-- interface-naming-policy toplevel-contextual -->
   <widget class="GtkWindow" id="MainWindow">
     <property name="width_request">450</property>
     <property name="height_request">250</property>
     <property name="visible">True</property>
     <property name="title" translatable="yes">Tomboy-Calendar</property>
-    <property name="window_position">GTK_WIN_POS_CENTER</property>
+    <property name="window_position">center</property>
+    <property name="default_width">500</property>
+    <property name="default_height">350</property>
     <child>
       <widget class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
         <child>
           <widget class="GtkToolbar" id="toolbar1">
             <property name="visible">True</property>
-            <property name="toolbar_style">GTK_TOOLBAR_BOTH</property>
+            <property name="toolbar_style">both</property>
             <child>
               <widget class="GtkToolButton" id="quitBtn">
                 <property name="visible">True</property>
@@ -23,6 +25,7 @@
               </widget>
               <packing>
                 <property name="expand">False</property>
+                <property name="homogeneous">True</property>
               </packing>
             </child>
             <child>
@@ -33,61 +36,39 @@
               </widget>
               <packing>
                 <property name="expand">False</property>
+                <property name="homogeneous">True</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkToolButton" id="toolbutton2">
+              <widget class="GtkToolButton" id="weekBtn">
                 <property name="visible">True</property>
+                <property name="label" translatable="yes">Week Resume</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-properties</property>
+                <signal name="clicked" handler="on_weekBtn_clicked"/>
               </widget>
               <packing>
                 <property name="expand">False</property>
+                <property name="homogeneous">True</property>
               </packing>
             </child>
             <child>
-              <widget class="GtkToolButton" id="toolbutton3">
+              <widget class="GtkToolButton" id="openAllBtn">
                 <property name="visible">True</property>
+                <property name="label" translatable="yes">Open All</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-open</property>
+                <signal name="clicked" handler="on_openAllBtn_clicked"/>
               </widget>
               <packing>
                 <property name="expand">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="GtkToolButton" id="toolbutton4">
-                <property name="visible">True</property>
-              </widget>
-              <packing>
-                <property name="expand">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="GtkToolItem" id="toolbutton1">
-                <property name="visible">True</property>
-                <child>
-                  <widget class="GtkEntry" id="searchEntry">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <signal name="activate" handler="on_searchEntry_activate"/>
-                  </widget>
-                </child>
-              </widget>
-              <packing>
-                <property name="expand">False</property>
-                <property name="homogeneous">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="GtkToolButton" id="searchBtn">
-                <property name="visible">True</property>
-                <property name="stock_id">gtk-find</property>
-                <signal name="clicked" handler="on_searchBtn_clicked"/>
-              </widget>
-              <packing>
-                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
               </packing>
             </child>
           </widget>
           <packing>
             <property name="expand">False</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
@@ -98,17 +79,28 @@
               <widget class="GtkCalendar" id="Calendar">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <signal name="month_changed" handler="on_Calendar_month_changed"/>
                 <signal name="day_selected_double_click" handler="on_Calendar_day_selected_double_click"/>
                 <signal name="day_selected" handler="on_Calendar_day_selected"/>
+                <signal name="month_changed" handler="on_Calendar_month_changed"/>
               </widget>
+              <packing>
+                <property name="position">0</property>
+              </packing>
             </child>
             <child>
-              <widget class="GtkTreeView" id="NoteView">
+              <widget class="GtkScrolledWindow" id="scrolledwindow1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="extension_events">GDK_EXTENSION_EVENTS_CURSOR</property>
-                <signal name="row_activated" handler="on_NoteView_row_activated"/>
+                <property name="hscrollbar_policy">automatic</property>
+                <property name="vscrollbar_policy">automatic</property>
+                <child>
+                  <widget class="GtkTreeView" id="NoteView">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="extension_events">cursor</property>
+                    <signal name="row_activated" handler="on_NoteView_row_activated"/>
+                  </widget>
+                </child>
               </widget>
               <packing>
                 <property name="position">1</property>
@@ -116,7 +108,7 @@
             </child>
           </widget>
           <packing>
-            <property name="position">2</property>
+            <property name="position">1</property>
           </packing>
         </child>
         <child>
@@ -125,7 +117,7 @@
           </widget>
           <packing>
             <property name="expand">False</property>
-            <property name="pack_type">GTK_PACK_END</property>
+            <property name="pack_type">end</property>
             <property name="position">1</property>
           </packing>
         </child>
@@ -134,7 +126,7 @@
   </widget>
   <widget class="GtkAboutDialog" id="aboutdialog">
     <property name="border_width">5</property>
-    <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
+    <property name="type_hint">normal</property>
     <property name="program_name">Tomboy-Calendar</property>
     <property name="version">0.1</property>
     <property name="copyright" translatable="yes">(C) 2009 - Humberto Henrique Campos Pinheiro</property>
@@ -493,11 +485,12 @@ arch-tag: 38005ac9-ac1f-4d4b-82c9-905b976dc7aa
         <child internal-child="action_area">
           <widget class="GtkHButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
-            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <property name="layout_style">end</property>
           </widget>
           <packing>
             <property name="expand">False</property>
-            <property name="pack_type">GTK_PACK_END</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
           </packing>
         </child>
       </widget>

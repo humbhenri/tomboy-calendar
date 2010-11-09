@@ -4,12 +4,12 @@
 #
 
 SRCDIR=..
-VER=0.2
+VER=0.1
 FILES=$(SRCDIR)/calendar.py $(SRCDIR)/tomboy.py $(SRCDIR)/interface.glade $(SRCDIR)/*.png $(SRCDIR)/tomboy-calendar.desktop $(SRCDIR)/calendar.gif
 FILES_QT=$(SRCDIR)/tomboy.py $(SRCDIR)/*.png $(SRCDIR)/tomboy-calendar-qt.desktop $(SRCDIR)/calendar.gif $(SRCDIR)/qtCalendar.py $(SRCDIR)/qtGui.py
 NAME=tomboy-calendar
-RPMSRCDIR=/usr/src/packages/SOURCES
-RPMSPECDIR=/usr/src/packages/SPECS
+RPMSRCDIR=~/rpmbuild/SOURCES 
+RPMSPECDIR=~/rpmbuild/SPECS
 
 pack: $(FILES)
 	mkdir $(NAME)-$(VER)
